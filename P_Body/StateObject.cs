@@ -1,5 +1,5 @@
 ﻿/*
- * Project: Yellow Taxi
+ * Project: S.A.S.A.R.
  * File: StateObject.cs
  * Programmer: Matthew Thiessen, Frank Taylor, Jordan Poirier, Tylor McLaughlin
  * First Version: Nov.11/2015

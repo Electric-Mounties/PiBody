@@ -1,13 +1,29 @@
-﻿using System;
+﻿/*
+ * Project: S.A.S.A.R.
+ * File: PiComm.cs
+ * Programmer: Matthew Thiessen, Frank Taylor, Jordan Poirier, Tylor McLaughlin
+ * First Version: Nov.11/2015
+ * Description: This file handels the piBodys communication
+ * Reference: This project is based on a chat program example found
+ *            on http://www.codeproject.com/Articles/16023/Multithreaded-Chat-Server
+ */
+
+using System;
 using System.IO.Ports;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
+   
 namespace P_Body
 {
+    /*
+     * Class: PiComm 
+     * Description: Holds meathods for the Pi's communication
+     */
     public class PiComm : IDisposable
     {
+        //Decleration of variables
         private SerialPort serialPort = null;
         private const int port = 2021;
         private Thread dataThread = null;
@@ -15,22 +31,26 @@ namespace P_Body
         public TcpClient server = null;
         public NetworkStream ns = null;
 
+
+
         public PiComm(string portName)
         {
-                server = ConnectToServer(ipAddress);
-                serialPort = ConnectToArduino();
-                ns = server.GetStream();
-
-                dataThread = new Thread(new ParameterizedThreadStart(serialDataReceived));
-                dataThread.Start();
+            //Call to connect server setting up IP and Port
+            server = ConnectToServer(ipAddress);
+            serialPort = ConnectToArduino();
+            ns = server.GetStream();
+            //Create a new thread
+            dataThread = new Thread(new ParameterizedThreadStart(serialDataReceived));
+            dataThread.Start();
         }
 
         public PiComm()
         {
+            //Call to connect server setting up IP and Port
             server = ConnectToServer(ipAddress);
             serialPort = ConnectToArduino();
             ns = server.GetStream();
-            
+            //Create a new thread
             dataThread = new Thread(new ParameterizedThreadStart(serialDataReceived));
             dataThread.Start();
         }
@@ -48,11 +68,12 @@ namespace P_Body
 
         private SerialPort ConnectToArduino()
         {
+            //search for serial ports
             SerialPort newConnection = null;
             
             newConnection = new SerialPort(ListComPorts()[0]);
             newConnection.Open();
-
+            //display serial connected serial port
             Console.WriteLine("Connected to the Serial Port...");
 
             return newConnection;
@@ -69,11 +90,12 @@ namespace P_Body
                     byte tmpByte;
 
                     tmpByte = (byte)serialPort.ReadByte();
-
+                    //Read bytes in until the terminator is read
                     if(tmpByte != '\n')
                     {
                         message += (char)tmpByte;
                     }
+                    //Send the message
                     else
                     {
                         SendTCPMessage("Sending: " + message);
@@ -105,6 +127,7 @@ namespace P_Body
 
                 Console.WriteLine("Connected to the Server...");
             }
+            //If unable to connect to the server catch exception
             catch (Exception Ex)
             {
                 Console.WriteLine("Unable to connect to server");
@@ -147,6 +170,7 @@ namespace P_Body
         {
             Console.WriteLine("Disconnecting from server...");
 
+            //Gracefull shut down on dissconnect
             if (serialPort != null)
             {
                 serialPort.Dispose();

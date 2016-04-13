@@ -1,5 +1,5 @@
 ﻿/*
- * Project: Yellow Taxi
+ * Project: S.A.S.A.R
  * File: P_Body.cs
  * Programmer: Matthew Thiessen, Frank Taylor, Jordan Poirier, Tylor McLaughlin
  * First Version: Nov.11/2015
@@ -57,7 +57,7 @@ namespace P_Body
                 state.workSocket = piComm.server.Client;
                 piComm.server.Client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                             new AsyncCallback((new P_Body()).OnReceive), state);
-
+                //A test to ensure TCP connection 
                 while (running)
                 {
                     Thread.Sleep(1000);

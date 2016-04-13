@@ -22,3 +22,6 @@ C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Capstone P_Body\P_Body\bi
 C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Capstone P_Body\P_Body\bin\Debug\PiOfThings.GpioCore.dll
 C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Capstone P_Body\P_Body\bin\Debug\PiOfThings.GpioUtils.dll
 C:\Users\Matthew\Documents\Visual Studio 2015\Projects\Capstone P_Body\P_Body\obj\Debug\P_Body.csprojResolveAssemblyReference.cache
+C:\Users\owner\Documents\Visual Studio 2015\Projects\PiBody\P_Body\bin\Debug\P_Body.exe.config
+C:\Users\owner\Documents\Visual Studio 2015\Projects\PiBody\P_Body\obj\Debug\P_Body.exe
+C:\Users\owner\Documents\Visual Studio 2015\Projects\PiBody\P_Body\obj\Debug\P_Body.pdb
